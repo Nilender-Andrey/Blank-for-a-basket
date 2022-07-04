@@ -3,14 +3,19 @@ import ProductAddForm from './components/ProductAddForm';
 import { ProductType } from './types';
 
 function App() {
-  const [goods, setGoods] = useState<ProductType[] | null>(null);
+  const [goods, setGoods] = useState<ProductType[]>([]);
+
+  const addProduct = (product: ProductType) => {
+    setGoods((p) => [...p, product]);
+  };
+
+  console.log(goods);
+
   return (
     <div className='App'>
-      <header>
-        <ProductAddForm setGoods={setGoods} />
-      </header>
+      <ProductAddForm addProduct={addProduct} />
 
-      <main>{goods ? 'Товар есть' : 'список пуст'}</main>
+      <main>{goods.length ? 'Что-то есть' : 'список пуст'}</main>
     </div>
   );
 }
