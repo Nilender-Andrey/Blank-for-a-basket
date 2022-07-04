@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
+import CustomButton from './CustomButton';
 
 type FormProps = {
   children: React.ReactNode;
@@ -11,7 +12,7 @@ const FormStyle = styled.form`
   justify-content: space-between;
   align-items: center;
 
-  max-width: 800px;
+  max-width: 700px;
   margin: 0 auto;
   padding: 10px 20px;
 
@@ -42,12 +43,13 @@ const FormStyle = styled.form`
     }
   }
 `;
+
 const CustomForm: FC<FormProps> = ({ children, submit }) => {
   return (
     <FormStyle onSubmit={submit}>
       <div>{children}</div>
 
-      <button type='submit'>Добавить</button>
+      <CustomButton type='submit'>Добавить</CustomButton>
     </FormStyle>
   );
 };

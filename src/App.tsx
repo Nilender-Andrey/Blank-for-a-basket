@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ProductAddForm from './components/ProductAddForm';
+import ProductCardList from './components/ProductCardList';
 import { ProductType } from './types';
 
 function App() {
@@ -9,13 +10,19 @@ function App() {
     setGoods((p) => [...p, product]);
   };
 
+  const deleteProduct = (id: string) => {
+    const products = goods.filter((item) => item.id !== id);
+    console.log(products);
+    setGoods(products);
+  };
+
   console.log(goods);
 
   return (
     <div className='App'>
       <ProductAddForm addProduct={addProduct} />
 
-      <main>{goods.length ? 'Что-то есть' : 'список пуст'}</main>
+      <ProductCardList goods={goods} deleteProduct={deleteProduct} />
     </div>
   );
 }
