@@ -5,7 +5,7 @@ import ProductCard from './ProductCard';
 
 type ProductCardListProps = {
   goods: ProductType[];
-  deleteProduct: (id: string) => void;
+  deleteProduct: (id: number) => void;
 };
 
 const ProductCardListStyle = styled.ul`
@@ -13,10 +13,6 @@ const ProductCardListStyle = styled.ul`
   justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
-
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px 10px;
 `;
 
 const ProductCardList: FC<ProductCardListProps> = ({

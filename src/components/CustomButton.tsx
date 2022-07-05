@@ -10,7 +10,9 @@ type CustomButtonProps = {
 export const CustomButtonStyle = styled.button`
   position: relative;
 
-  width: 250px;
+  width: 100%;
+  max-width: 250px;
+  min-width: 200px;
   height: 35px;
 
   background-color: #24173d;

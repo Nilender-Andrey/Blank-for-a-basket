@@ -5,7 +5,7 @@ import CustomButton from './CustomButton';
 
 type ProductCardProps = {
   product: ProductType;
-  deleteProduct: (id: string) => void;
+  deleteProduct: (id: number) => void;
 };
 
 const ProductCardStyle = styled.li`
@@ -43,14 +43,14 @@ const ProductCardStyle = styled.li`
 `;
 
 const ProductCard: FC<ProductCardProps> = ({ product, deleteProduct }) => {
-  const { id, name, price } = product;
+  const { id, productId, name, price } = product;
 
   const clickHandler = () => deleteProduct(id);
 
   return (
     <ProductCardStyle>
       <p>Числовой идентификатор товара:</p>
-      <p className='product-id'>{id}</p>
+      <p className='product-id'>{productId}</p>
       <p>Название товара:</p>
       <p>{name}</p>
       <p>Цена товара:</p>

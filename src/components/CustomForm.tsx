@@ -5,34 +5,25 @@ import CustomButton from './CustomButton';
 type FormProps = {
   children: React.ReactNode;
   submit: (event: React.SyntheticEvent) => void;
+  buttonText: string;
 };
 
 const FormStyle = styled.form`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 5px;
 
+  width: 100%;
   max-width: 700px;
   margin: 0 auto;
   padding: 10px 20px;
 
   background-color: #ffc633;
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
 
   div {
     width: 60%;
-  }
-
-  button {
-    width: 250px;
-    height: 35px;
-    align-items: flex-end;
-
-    background-color: #24173d;
-
-    color: #fff;
-    font-size: 18px;
-    border-radius: 10px;
   }
 
   @media (max-width: 680px) {
@@ -44,12 +35,12 @@ const FormStyle = styled.form`
   }
 `;
 
-const CustomForm: FC<FormProps> = ({ children, submit }) => {
+const CustomForm: FC<FormProps> = ({ children, submit, buttonText }) => {
   return (
     <FormStyle onSubmit={submit}>
       <div>{children}</div>
 
-      <CustomButton type='submit'>Добавить</CustomButton>
+      <CustomButton type='submit'>{buttonText}</CustomButton>
     </FormStyle>
   );
 };

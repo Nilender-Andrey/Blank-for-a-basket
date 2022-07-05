@@ -20,7 +20,6 @@ interface InputStyleProps {
 const InputStyle = styled.label<InputStyleProps>`
   display: block;
   width: 100%;
-  margin-bottom: 5px;
 
   &:last-child {
     margin-bottom: 0;

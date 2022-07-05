@@ -93,13 +93,18 @@ const ProductAddForm: FC<ProductAddFormProps> = ({ addProduct }) => {
     if (!state.price) dispatch({ type: 'isPriceFilled', payload: false });
 
     if (state.id && state.name && state.price) {
-      addProduct({ id: state.id, name: state.name, price: state.price });
+      addProduct({
+        id: Date.now(),
+        productId: state.id,
+        name: state.name,
+        price: state.price,
+      });
       dispatch({ type: 'reset', payload: 'reset' });
     }
   };
 
   return (
-    <CustomForm submit={submitHandler}>
+    <CustomForm submit={submitHandler} buttonText='Добавить'>
       <CustomInput
         type={'number'}
         placeholder={'Числовой идентификатор товара'}
