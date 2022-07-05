@@ -13,9 +13,8 @@ type InputProps = {
 };
 
 const InputStyle = styled.input`
-  width: 100%;
   height: 30px;
-  min-width: 200px;
+  min-width: 300px;
   padding: 10px 20px;
 
   border: none;

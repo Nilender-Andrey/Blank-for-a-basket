@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import styled from 'styled-components/macro';
+import Flex from './UI/Flex';
 
 type FooterProps = {
   children: React.ReactNode;
@@ -15,20 +16,17 @@ const FooterStyle = styled.footer`
   background-color: #fff;
 `;
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const Wrapper = styled(Flex)`
   gap: 10px;
 
   width: 100%;
   max-width: 1000px;
-  min-height: 110px;
+  height: 150px;
   margin: 0 auto;
 
   @media (max-width: 840px) {
     flex-direction: column;
-    min-height: 90px;
+    height: 260px;
   }
 `;
 

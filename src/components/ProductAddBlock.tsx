@@ -1,15 +1,25 @@
 import React, { FC, useReducer } from 'react';
+import styled from 'styled-components';
 import { Validation } from '../helpers/validation';
 import { ProductType } from '../types';
+import Flex from './UI/Flex';
 import Form from './UI/Form';
 import Input from './UI/Input';
 import Text from './UI/Text';
 
-type ProductAddFormProps = {
+type ProductAddBlockProps = {
   addProduct: (product: ProductType) => void;
 };
 
-type Reducer<S, A> = (prevState: S, action: A) => S;
+const ProductAddBlockStyle = styled.header`
+  max-width: 1000px;
+  margin: 0 auto;
+
+  padding: 10px;
+
+  background-color: #ffc633;
+  border-radius: 0 0 10px 10px;
+`;
 
 const initialState = {
   id: '',
@@ -35,10 +45,7 @@ interface ProductState {
   isPriceFilled: boolean;
 }
 
-const reducer: Reducer<ProductState, FormAction> = (
-  state: ProductState,
-  action: FormAction,
-): ProductState => {
+const reducer = (state: ProductState, action: FormAction): ProductState => {
   if (typeof action.payload === 'string') {
     switch (action.type) {
       case 'addName':
@@ -65,7 +72,7 @@ const reducer: Reducer<ProductState, FormAction> = (
   return state;
 };
 
-const ProductAddForm: FC<ProductAddFormProps> = ({ addProduct }) => {
+const ProductAddBlock: FC<ProductAddBlockProps> = ({ addProduct }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const idHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -105,51 +112,61 @@ const ProductAddForm: FC<ProductAddFormProps> = ({ addProduct }) => {
   };
 
   return (
-    <Form submit={submitHandler} buttonText='Добавить'>
-      <Input
-        type={'number'}
-        placeholder={'Числовой идентификатор товара'}
-        step={'1'}
-        min={'0'}
-        handler={idHandler}
-        value={state.id}
-      />
-      <Text
-        p={'5px 20px'}
-        color={'red'}
-        v={state.isIdFilled ? 'hidden' : 'visible'}>
-        Поле не заполнено
-      </Text>
+    <ProductAddBlockStyle>
+      <Form submit={submitHandler} buttonText='Добавить'>
+        <Flex fw={'wrap'} g={'5px'} jc={'center'}>
+          <Flex fd={'column'}>
+            <Input
+              type={'number'}
+              placeholder={'Числовой идентификатор товара'}
+              step={'1'}
+              min={'0'}
+              handler={idHandler}
+              value={state.id}
+            />
+            <Text
+              p={'5px 20px'}
+              color={'red'}
+              v={state.isIdFilled ? 'hidden' : 'visible'}>
+              Поле не заполнено
+            </Text>
+          </Flex>
 
-      <Input
-        type={'text'}
-        placeholder={'Название товара'}
-        value={state.name}
-        handler={nameHandler}
-      />
-      <Text
-        p={'5px 20px'}
-        color={'red'}
-        v={state.isNameFilled ? 'hidden' : 'visible'}>
-        Поле не заполнено
-      </Text>
+          <Flex fd={'column'}>
+            <Input
+              type={'text'}
+              placeholder={'Название товара'}
+              value={state.name}
+              handler={nameHandler}
+            />
+            <Text
+              p={'5px 20px'}
+              color={'red'}
+              v={state.isNameFilled ? 'hidden' : 'visible'}>
+              Поле не заполнено
+            </Text>
+          </Flex>
 
-      <Input
-        type={'number'}
-        placeholder={'Цена товара'}
-        step={'0.01'}
-        min={'0'}
-        handler={priceHandler}
-        value={state.price}
-      />
-      <Text
-        p={'5px 20px'}
-        color={'red'}
-        v={state.isPriceFilled ? 'hidden' : 'visible'}>
-        Поле не заполнено
-      </Text>
-    </Form>
+          <Flex fd={'column'}>
+            <Input
+              type={'number'}
+              placeholder={'Цена товара'}
+              step={'0.01'}
+              min={'0'}
+              handler={priceHandler}
+              value={state.price}
+            />
+            <Text
+              p={'5px 20px'}
+              color={'red'}
+              v={state.isPriceFilled ? 'hidden' : 'visible'}>
+              Поле не заполнено
+            </Text>
+          </Flex>
+        </Flex>
+      </Form>
+    </ProductAddBlockStyle>
   );
 };
 
-export default ProductAddForm;
+export default ProductAddBlock;

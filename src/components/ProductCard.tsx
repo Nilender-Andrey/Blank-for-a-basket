@@ -2,6 +2,8 @@ import React, { FC } from 'react';
 import styled from 'styled-components/macro';
 import { ProductType } from '../types';
 import Button from './UI/Button';
+import ColoredLine from './UI/ColoredLine';
+import Flex from './UI/Flex';
 import StrikeoutText from './UI/StrikeoutText';
 import Text from './UI/Text';
 
@@ -11,6 +13,9 @@ type ProductCardProps = {
 };
 
 const ProductCardStyle = styled.li`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 20px 10px;
   width: 100%;
   max-width: 280px;
@@ -19,10 +24,7 @@ const ProductCardStyle = styled.li`
   border-radius: 10px;
 `;
 
-const PriceBlockStyle = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const PriceBlockStyle = styled(Flex)`
   flex-wrap: wrap;
   gap: 5px;
 
@@ -52,23 +54,26 @@ const ProductCard: FC<ProductCardProps> = ({ product, deleteProduct }) => {
 
   return (
     <ProductCardStyle>
-      <Text fs='16px' p={'0 0 5px 0'}>
-        Числовой идентификатор товара:
-      </Text>
-      <Text fs='16px' fw={700} p={'0 0 5px 0'} m={'0 0 5px 0'}>
-        {productId}
-      </Text>
-
-      <Text fs='16px' p={'0 0 5px 0'}>
-        Название товара:
-      </Text>
-      <Text fs='16px' fw={700} p={'0 0 5px 0'} m={'0 0 5px 0'}>
-        {name}
-      </Text>
-      <Text fs='16px' p={'0 0 5px 0'}>
-        Цена товара:
-      </Text>
-      <PriceBlockStyle>{priceBlock}</PriceBlockStyle>
+      <div>
+        <Text fs='16px' p={'0 0 5px 0'}>
+          Числовой идентификатор товара:
+        </Text>
+        <Text fs='16px' fw={700} p={'0 0 5px 10px'} m={'0 0 5px 0'}>
+          {productId}
+        </Text>
+        <ColoredLine m={'5px 0'} />
+        <Text fs='16px' p={'0 0 5px 0'}>
+          Название товара:
+        </Text>
+        <Text fs='16px' fw={700} p={'0 0 5px 10px'} m={'0 0 5px 0'}>
+          {name}
+        </Text>
+        <ColoredLine m={'5px 0'} />
+        <Text fs='16px' p={'0 0 5px 0'}>
+          Цена товара:
+        </Text>
+        <PriceBlockStyle>{priceBlock}</PriceBlockStyle>
+      </div>
 
       <Button handler={clickHandler}>Удалить товар</Button>
     </ProductCardStyle>

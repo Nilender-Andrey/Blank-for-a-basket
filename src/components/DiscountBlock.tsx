@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 import styled from 'styled-components/macro';
 import Button from './UI/Button';
+import Flex from './UI/Flex';
 import Form from './UI/Form';
 import Input from './UI/Input';
 
@@ -9,21 +10,18 @@ type DiscountBlockProps = {
 };
 
 const DiscountBlockStyle = styled.div`
-  width: 100%;
-
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  align-items: center;
 
-  padding: 10px;
+  gap: 10px;
+
+  width: 100%;
+  padding: 20px;
+  height: inherit;
 
   background-color: #ffc633;
-  border-radius: 10px;
-
-  @media (max-width: 680px) {
-    flex-direction: column;
-  }
+  border-radius: 10px 10px 0 0;
 `;
 
 const DiscountBlock: FC<DiscountBlockProps> = ({ addDiscount }) => {
@@ -47,15 +45,17 @@ const DiscountBlock: FC<DiscountBlockProps> = ({ addDiscount }) => {
   return (
     <DiscountBlockStyle>
       <Form submit={submitHandler} buttonText='Установить скидку'>
-        <Input
-          type='number'
-          min='0'
-          max='100'
-          step='0.01'
-          placeholder='Скидка'
-          handler={inputHandler}
-          value={discountValue}
-        />
+        <Flex m={'0 0 10px 0'}>
+          <Input
+            type='number'
+            min='0'
+            max='100'
+            step='0.01'
+            placeholder='Скидка'
+            handler={inputHandler}
+            value={discountValue}
+          />
+        </Flex>
       </Form>
       <Button handler={resetHandler}>Убрать скидки</Button>
     </DiscountBlockStyle>

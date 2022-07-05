@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import DiscountBlock from './components/DiscountBlock';
 import Footer from './components/Footer';
 import Main from './components/Main';
-import ProductAddForm from './components/ProductAddForm';
+import ProductAddBlock from './components/ProductAddBlock';
 import ProductCardList from './components/ProductCardList';
 import StatisticsBlock from './components/StatisticsBlock';
 import Text from './components/UI/Text';
@@ -39,11 +39,10 @@ function App() {
     }
   }, [discount]);
 
-  console.log(goods);
-
   return (
     <div className='App'>
-      <ProductAddForm addProduct={addProduct} />
+      <ProductAddBlock addProduct={addProduct} />
+
       <Main>
         {goods.length ? (
           <ProductCardList goods={goods} deleteProduct={deleteProduct} />
