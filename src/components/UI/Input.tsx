@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 type InputProps = {
   type: string;
@@ -14,14 +14,14 @@ type InputProps = {
 
 const InputStyle = styled.input`
   width: 100%;
-  height: 35px;
+  height: 30px;
   min-width: 200px;
   padding: 10px 20px;
 
   border: none;
   border-radius: 10px;
 
-  font-size: 18px;
+  font-size: 16px;
 `;
 
 const Input: FC<InputProps> = ({ handler, ...arg }) => {

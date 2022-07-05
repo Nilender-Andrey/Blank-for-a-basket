@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import styled from 'styled-components';
-import CustomButton from './CustomButton';
+import styled from 'styled-components/macro';
+import Button from './Button';
 
 type FormProps = {
   children: React.ReactNode;
@@ -35,14 +35,14 @@ const FormStyle = styled.form`
   }
 `;
 
-const CustomForm: FC<FormProps> = ({ children, submit, buttonText }) => {
+const Form: FC<FormProps> = ({ children, submit, buttonText }) => {
   return (
     <FormStyle onSubmit={submit}>
       <div>{children}</div>
 
-      <CustomButton type='submit'>{buttonText}</CustomButton>
+      <Button type='submit'>{buttonText}</Button>
     </FormStyle>
   );
 };
 
-export default CustomForm;
+export default Form;

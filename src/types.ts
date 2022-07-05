@@ -3,4 +3,5 @@ export type ProductType = {
   productId: string;
   name: string;
   price: string;
+  discountPrice: string;
 };

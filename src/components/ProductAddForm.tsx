@@ -1,9 +1,9 @@
 import React, { FC, useReducer } from 'react';
 import { Validation } from '../helpers/validation';
-
 import { ProductType } from '../types';
-import CustomForm from './CustomForm';
-import CustomInput from './CustomInput';
+import Form from './UI/Form';
+import Input from './UI/Input';
+import Text from './UI/Text';
 
 type ProductAddFormProps = {
   addProduct: (product: ProductType) => void;
@@ -98,41 +98,57 @@ const ProductAddForm: FC<ProductAddFormProps> = ({ addProduct }) => {
         productId: state.id,
         name: state.name,
         price: state.price,
+        discountPrice: '0',
       });
       dispatch({ type: 'reset', payload: 'reset' });
     }
   };
 
   return (
-    <CustomForm submit={submitHandler} buttonText='Добавить'>
-      <CustomInput
+    <Form submit={submitHandler} buttonText='Добавить'>
+      <Input
         type={'number'}
         placeholder={'Числовой идентификатор товара'}
         step={'1'}
         min={'0'}
         handler={idHandler}
         value={state.id}
-        isFilled={state.isIdFilled}
       />
+      <Text
+        p={'5px 20px'}
+        color={'red'}
+        v={state.isIdFilled ? 'hidden' : 'visible'}>
+        Поле не заполнено
+      </Text>
 
-      <CustomInput
+      <Input
         type={'text'}
         placeholder={'Название товара'}
         value={state.name}
         handler={nameHandler}
-        isFilled={state.isNameFilled}
       />
+      <Text
+        p={'5px 20px'}
+        color={'red'}
+        v={state.isNameFilled ? 'hidden' : 'visible'}>
+        Поле не заполнено
+      </Text>
 
-      <CustomInput
+      <Input
         type={'number'}
         placeholder={'Цена товара'}
         step={'0.01'}
         min={'0'}
         handler={priceHandler}
         value={state.price}
-        isFilled={state.isPriceFilled}
       />
-    </CustomForm>
+      <Text
+        p={'5px 20px'}
+        color={'red'}
+        v={state.isPriceFilled ? 'hidden' : 'visible'}>
+        Поле не заполнено
+      </Text>
+    </Form>
   );
 };
 

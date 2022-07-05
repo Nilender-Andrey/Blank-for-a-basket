@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const Main = styled.div`
   min-height: calc(100vh - 473px);
