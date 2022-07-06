@@ -27,24 +27,23 @@ const StatisticsBlockStyle = styled.div`
 `;
 
 const StatisticsBlock: FC<StatisticsBlockProps> = ({ goods, discount }) => {
-  console.log(goods);
-
   const price = goods.reduce((sum, item) => sum + +item.price, 0);
   const discountPrice = goods
     .reduce((sum, item) => sum + +item.discountPrice, 0)
     .toFixed(2);
 
-  const priceText = discount ? (
-    <Flex jc={'start'} ai={'center'} g={'5px'}>
-      <Text fs={'16px'}>Цена текущего списка товаров:</Text>
-      <StrikeoutText ta={'center'}>{price}</StrikeoutText>
-      <Text fs={'16px'}>{discountPrice}</Text>
-    </Flex>
-  ) : (
-    <Text fs={'16px'} m={'0 0 5px 0'}>
-      Цена текущего списка товаров: {price}
-    </Text>
-  );
+  const priceText =
+    discount && goods.length ? (
+      <Flex jc={'start'} ai={'center'} g={'5px'}>
+        <Text fs={'16px'}>Цена текущего списка товаров:</Text>
+        <StrikeoutText ta={'center'}>{price}</StrikeoutText>
+        <Text fs={'16px'}>{discountPrice}</Text>
+      </Flex>
+    ) : (
+      <Text fs={'16px'} m={'0 0 5px 0'}>
+        Цена текущего списка товаров: {price}
+      </Text>
+    );
 
   return (
     <StatisticsBlockStyle>
